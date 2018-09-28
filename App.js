@@ -3,7 +3,9 @@ import "./App.css";
 
 import Contacts from "./components/contact/Contacts";
 import Header from "./components/layout/Header";
+import AddContact from "./components/contact/AddContact";
 import { Provider } from "./context";
+
 // import MyFrames from "./components/MyFrames";
 // import { Provider } from "./newContext";
 
@@ -19,6 +21,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <div className="container">
+            <AddContact />
             <Contacts />
           </div>
         </div>
