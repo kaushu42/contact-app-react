@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Contacts from "./components/Contacts";
-import Header from "./components/Header";
+import Contacts from "./components/contact/Contacts";
+import Header from "./components/layout/Header";
 import { Provider } from "./context";
 // import MyFrames from "./components/MyFrames";
 // import { Provider } from "./newContext";
