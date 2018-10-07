@@ -11,6 +11,13 @@ const reducer = (state, action) => {
           return text.id !== action.payload;
         })
       };
+
+    case "ADD_FRAME":
+      return {
+        ...state,
+        texts: [...state.texts, action.payload]
+      };
+
     default:
       return state;
   }
@@ -20,11 +27,11 @@ export class Provider extends Component {
   state = {
     texts: [
       {
-        id: 1,
+        id: "1",
         text: "Enter Text Yo:"
       },
       {
-        id: 2,
+        id: "2",
         text: "Please Enter Text 45:"
       }
     ],

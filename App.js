@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Contacts from "./components/contact/Contacts";
 import Header from "./components/layout/Header";
@@ -8,23 +8,33 @@ import { Provider } from "./context";
 
 // import MyFrames from "./components/MyFrames";
 // import { Provider } from "./newContext";
+// import AddFrame from "./components/AddFrame";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
       // <Provider>
-      //   <MyFrames />
+      //   <div className="container">
+      //     <MyFrames />
+      //     <AddFrame />
+      //   </div>
       // </Provider>
       <Provider>
-        <div className="App">
-          <Header />
-          <div className="container">
-            <AddContact />
-            <Contacts />
+        <Router>
+          <div className="App">
+            <Header />
+
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Contacts} />
+              </Switch>
+            </div>
           </div>
-        </div>
+        </Router>
       </Provider>
     );
   }

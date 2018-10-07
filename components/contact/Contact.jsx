@@ -42,10 +42,10 @@ class Contact extends Component {
               {showInfo ? (
                 <ul className="list-group">
                   <li className="list-group-item">
-                    <b>Weapon:</b> {weapon}
+                    <b>Power:</b> {weapon}
                   </li>
                   <li className="list-group-item">
-                    <b>Position:</b> {position}
+                    <b>Alliance:</b> {position}
                   </li>
                 </ul>
               ) : null}

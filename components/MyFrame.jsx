@@ -12,7 +12,7 @@ class MyFrame extends Component {
   handleButtonClick = () => {
     this.flag = true;
     let text = document.getElementById("myText" + this.props.id);
-    this.setState({ divText: text.value });
+    if (text.value !== "") this.setState({ divText: text.value });
   };
 
   handleDeleteClick = (id, dispatch) => {
@@ -25,18 +25,29 @@ class MyFrame extends Component {
       <Consumer>
         {value => {
           const { dispatch } = value;
+          const style = {
+            margin: "0 auto",
+            float: "none"
+          };
           return (
             <React.Fragment>
-              <div className="card" style={{ textAlign: "center" }}>
+              <div className="card m-3 " style={{ textAlign: "center" }}>
                 {!this.flag ? this.props.text : this.state.divText}
                 <i
                   className="fas fa-times"
                   style={{ cursor: "pointer", color: "red" }}
                   onClick={this.handleDeleteClick.bind(this, id, dispatch)}
                 />
-                <input type="text" name="Name" id={"myText" + this.props.id} />
+                <input
+                  type="text"
+                  name="Name"
+                  className="w-75"
+                  style={style}
+                  id={"myText" + this.props.id}
+                />
                 <button
-                  className="btn bg-warning"
+                  className="btn bg-warning w-25"
+                  style={style}
                   onClick={this.handleButtonClick}
                 >
                   Click Me
@@ -50,7 +61,7 @@ class MyFrame extends Component {
   }
 }
 MyFrame.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };
 export default MyFrame;
