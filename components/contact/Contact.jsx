@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { Link } from "react-router-dom";
+
+import axios from "axios";
+
 import { Consumer } from "../../context";
 
 class Contact extends Component {
@@ -12,12 +16,13 @@ class Contact extends Component {
     this.setState({ showInfo: !this.state.showInfo });
   };
 
-  handleDeleteClick = (id, dispatch) => {
+  handleDeleteClick = async (id, dispatch) => {
+    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
     dispatch({ type: "DELETE_CONTACT", payload: id });
   };
 
   render() {
-    const { id, name, weapon, position } = this.props.contact;
+    const { id, name, email, phone } = this.props.contact;
     const { showInfo } = this.state;
     /*To pass params this.handleOnClick.bind(this, name) */
     return (
@@ -33,6 +38,17 @@ class Contact extends Component {
                   className="fas fa-sort-down"
                   style={{ cursor: "pointer" }}
                 />
+                <Link to={`edit/${id}`}>
+                  <i
+                    className="fas fa-edit"
+                    style={{
+                      float: "right",
+                      cursor: "pointer",
+                      color: "black",
+                      marginRight: "1rem"
+                    }}
+                  />
+                </Link>
                 <i
                   className="fas fa-times"
                   style={{ cursor: "pointer", float: "right", color: "red" }}
@@ -42,10 +58,10 @@ class Contact extends Component {
               {showInfo ? (
                 <ul className="list-group">
                   <li className="list-group-item">
-                    <b>Power:</b> {weapon}
+                    <b>Email:</b> {email}
                   </li>
                   <li className="list-group-item">
-                    <b>Alliance:</b> {position}
+                    <b>Phone:</b> {phone}
                   </li>
                 </ul>
               ) : null}
@@ -62,6 +78,6 @@ Contact.propTypes = {
 };
 
 Contact.defaultProps = {
-  contact: { id: null, name: "-", weapon: "-", position: "-" }
+  contact: { id: null, name: "-", email: "-", phone: "-" }
 };
 export default Contact;

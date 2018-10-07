@@ -11,9 +11,14 @@ class Contacts extends Component {
           const { contacts } = value;
           return (
             <React.Fragment>
-              {contacts.map(contact => (
-                <Contact key={contact.id} contact={contact} />
-              ))}
+              <h1 className="display-3 text-center text-white bg-dark">
+                Contacts List
+              </h1>
+              {contacts.length
+                ? contacts.map(contact => (
+                    <Contact key={contact.id} contact={contact} />
+                  ))
+                : "No contacts!"}
             </React.Fragment>
           );
         }}
